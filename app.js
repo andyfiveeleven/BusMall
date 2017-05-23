@@ -150,3 +150,22 @@ function eventHandler() {
 
 
 render();
+
+function Dog(name, breed) {
+  this.name = name,
+  this.breed = breed,
+  this.legs = 4,
+  this.isAGoodDog = true;
+}
+
+Dog.prototype.says = function(bark){
+  console.log(bark);
+};
+
+var parker = new Dog('parker', 'English Shepherd');
+
+parker.says('woof');
+
+var demi = new Dog('demi', 'Border Collie');
+
+demi.legs = 3;
