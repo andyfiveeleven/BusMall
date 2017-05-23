@@ -39,12 +39,6 @@ function randomImages(max){
   for (var i =0; i<3; i++){
     displayedImages.push(imagesArray[Math.floor(Math.random() * max)]);
   }
-  // console.log(displayedImages);
-  // while(displayedImages[0] === displayedImages[1] || displayedImages[0] === displayedImages[2] || displayedImages[1] === displayedImages[2]){
-  //   displayedImages.splice(1, 2);
-  //   displayedImages.push(imagesArray[Math.floor(Math.random() * max +1)]);
-  //   displayedImages.push(imagesArray[Math.floor(Math.random() * max +1)]);
-  // }
   //compares current array[i] to last shown array, and to the other two positions in the current array, replaces if there is a similarity
   while(displayedImages[0] === lastShown[0] || displayedImages[0] === lastShown[1] || displayedImages[0] === lastShown[2] || displayedImages[0] === displayedImages[1] || displayedImages[0] === displayedImages[2]){
     displayedImages.splice(0, 1, imagesArray[Math.floor(Math.random() * max)]);
