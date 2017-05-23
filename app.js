@@ -6,14 +6,14 @@ var list = document.getElementById('list');
 
 //object constructor
 function ImageOption(name, path){
-  this.name=name;
-  this.path=path;
-  this.clickCount=0;
-  this.displayCount=0;
+  this.name = name;
+  this.path = path;
+  this.clickCount = 0;
+  this.displayCount = 0;
   imagesArray.push(this);
 }
 
-var bag = new ImageOption ('bag', 'img/bag.jpg');
+var bag = new ImageOption('bag', 'img/bag.jpg');
 var banana = new ImageOption('banana', 'img/banana.jpg');
 var bathroom = new ImageOption('bathroom', 'img/bathroom.jpg');
 var boots = new ImageOption('boots', 'img/boots.jpg');
@@ -65,6 +65,7 @@ function clicker(click) {
   }
 }
 
+//renders the three images, creates an image tag with class, src and id attributes
 function render(){
   for (var j = 0; j<3; j++) {
     var display = document.getElementById('display');
@@ -80,6 +81,7 @@ function render(){
   }
 }
 
+//what happens everytime you click? This happens. clicker is triggered, counter is added to, sets the last shown images as the current images, then clears teh current images. Clears the page, renders new random images. 
 function eventHandler() {
   if (counter < 24) {
     var selected = event.target;
