@@ -1,11 +1,19 @@
 var imagesArray = [];
 var chartLabels = [];
-var chartData = [];
+var chartClickData = [];
+var chartDisplayData = [];
 // var clickPercent = []; // trying to figure out the percentages
 var displayedImages = [];
 var lastShown = [];
 var counter = 0;
 var list = document.getElementById('list');
+
+if(localStorage.chartClickData){
+  chartClickData = localStorage.chartClickData.split(',');
+  counter = 24;
+} else {
+  chartClickData = [];
+}
 
 //object constructor
 function ImageOption(name, path){
@@ -98,7 +106,8 @@ function creatList(){
 function getChartData(){
   for(var n = 0; n < imagesArray.length; n++){
     chartLabels.push(imagesArray[n].name);
-    chartData.push(imagesArray[n].clickCount);
+    chartClickData.push(imagesArray[n].clickCount);
+    chartDisplayData.push(imagesArray[n].displayCount);
   }
 }
 
@@ -112,7 +121,7 @@ function buildChart(){
       labels: chartLabels,
       datasets: [{
         label: 'times images chosen',
-        data: chartData,
+        data: chartClickData,
         backgroundColor: 'blue',
       }]
     },
@@ -146,8 +155,20 @@ function eventHandler() {
     creatList();
     getChartData();
     buildChart();
+    save();
   }
 }
 
+if (counter < 24) {
+  render();
+} else {
+  creatList();
+  getChartData();
+  buildChart();
 
-render();
+}
+
+function save() {
+  localStorage.chartClickData = chartClickData;
+  console.log(chartClickData);
+}
