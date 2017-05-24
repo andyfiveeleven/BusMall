@@ -120,6 +120,7 @@ function buildChart(){
       scales:{
         yAxes: [{
           ticks: {
+            stepSize: 1,
             beginAtZero:true
           }
         }]
