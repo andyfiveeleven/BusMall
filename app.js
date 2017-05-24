@@ -1,26 +1,7 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @andyfiveeleven
- Sign out
- Watch 0
-  Star 0
-  Fork 0 andyfiveeleven/BusMall
- Code  Issues 0  Pull requests 1  Projects 0  Wiki  Settings Insights
-Branch: features/chart… Find file Copy pathBusMall/app.js
-8e3c47f  11 minutes ago
-@andyfiveeleven andyfiveeleven added some clarification comments
-1 contributor
-RawBlameHistory
-154 lines (138 sloc)  5.06 KB
 var imagesArray = [];
 var chartLabels = [];
 var chartData = [];
-// var clickPercent = [];
+// var clickPercent = []; // trying to figure out the percentages
 var displayedImages = [];
 var lastShown = [];
 var counter = 0;
