@@ -1,11 +1,17 @@
 var imagesArray = [];
 var chartLabels = [];
-var chartData = [];
+var chartClickData = [];
+var chartDisplayData = [];
 // var clickPercent = []; // trying to figure out the percentages
 var displayedImages = [];
 var lastShown = [];
 var counter = 0;
-var list = document.getElementById('list');
+
+if(localStorage.chartClickData){
+  chartClickData = localStorage.chartClickData.split(',');
+  counter = 24;
+}
+
 
 //object constructor
 function ImageOption(name, path){
@@ -84,21 +90,15 @@ function render(){
   }
 }
 
-function creatList(){
+function wipe(){
   document.getElementById('display').innerHTML = '';
-  var ul = document.createElement('ul');
-  document.body.appendChild(ul);
-  for (var x = 0; x < imagesArray.length; x++){
-    var li = document.createElement('li');
-    li.innerHTML = imagesArray[x].name + ' was clicked ' + imagesArray[x].clickCount + ' times and was clicked ' + Math.floor(imagesArray[x].clickCount/imagesArray[x].displayCount * 100) + ' percent of times displayed';
-    list.appendChild(li);
-  }
 }
 
 function getChartData(){
   for(var n = 0; n < imagesArray.length; n++){
     chartLabels.push(imagesArray[n].name);
-    chartData.push(imagesArray[n].clickCount);
+    chartClickData.push(imagesArray[n].clickCount);
+    chartDisplayData.push(imagesArray[n].displayCount);
   }
 }
 
@@ -112,7 +112,7 @@ function buildChart(){
       labels: chartLabels,
       datasets: [{
         label: 'times images chosen',
-        data: chartData,
+        data: chartClickData,
         backgroundColor: 'blue',
       }]
     },
@@ -120,6 +120,7 @@ function buildChart(){
       scales:{
         yAxes: [{
           ticks: {
+            stepSize: 1,
             beginAtZero:true
           }
         }]
@@ -143,11 +144,26 @@ function eventHandler() {
     render();
     console.log(selected.clickCount);
   } else {
-    creatList();
+    wipe();
+    getChartData();
+    buildChart();
+    save();
+  }
+}
+
+function loadChartIfComplete(){ //loads the chart if the user has complete the survey (that counter completion is in local storage)
+  if (counter < 24) {
+    render();
+  } else {
+    wipe();
     getChartData();
     buildChart();
   }
 }
 
+function save() {
+  localStorage.chartClickData = chartClickData;
+  console.log(chartClickData);
+}
 
-render();
+loadChartIfComplete();
