@@ -16,25 +16,25 @@ function ImageOption(name, path){
   imagesArray.push(this);
 }
 
-var bag = new ImageOption('bag', 'img/bag.jpg');
-var banana = new ImageOption('banana', 'img/banana.jpg');
-var bathroom = new ImageOption('bathroom', 'img/bathroom.jpg');
-var boots = new ImageOption('boots', 'img/boots.jpg');
-var breakfast = new ImageOption('breakfast', 'img/breakfast.jpg');
-var bubblegum = new ImageOption('bubblegum', 'img/bubblegum.jpg');
-var chair = new ImageOption('chair', 'img/chair.jpg');
-var cthulhu = new ImageOption('cthulhu', 'img/cthulhu.jpg');
-var dogduck = new ImageOption('dog-duck', 'img/dog-duck.jpeg');
-var dragon = new ImageOption('dragon', 'img/dragon.jpg');
-var pen = new ImageOption('pen', 'img/pen.jpg');
-var petsweep = new ImageOption('pet-sweep', 'img/pet-sweep.jpg');
-var scissors = new ImageOption('scissors', 'img/scissors.jpg');
-var shark = new ImageOption('shark', 'img/shark.jpg');
-var sweep = new ImageOption('sweep', 'img/sweep.png');
-var tauntaun = new ImageOption('tauntaun', 'img/tauntaun.jpg');
-var unicorn = new ImageOption('unicorn', 'img/unicorn.jpg');
-var usb = new ImageOption('usb', 'img/usb.gif');
-var watercan = new ImageOption('water-can', 'img/water-can.jpg');
+new ImageOption('bag', 'img/bag.jpg');
+new ImageOption('banana', 'img/banana.jpg');
+new ImageOption('bathroom', 'img/bathroom.jpg');
+new ImageOption('boots', 'img/boots.jpg');
+new ImageOption('breakfast', 'img/breakfast.jpg');
+new ImageOption('bubblegum', 'img/bubblegum.jpg');
+new ImageOption('chair', 'img/chair.jpg');
+new ImageOption('cthulhu', 'img/cthulhu.jpg');
+new ImageOption('dog-duck', 'img/dog-duck.jpeg');
+new ImageOption('dragon', 'img/dragon.jpg');
+new ImageOption('pen', 'img/pen.jpg');
+new ImageOption('pet-sweep', 'img/pet-sweep.jpg');
+new ImageOption('scissors', 'img/scissors.jpg');
+new ImageOption('shark', 'img/shark.jpg');
+new ImageOption('sweep', 'img/sweep.png');
+new ImageOption('tauntaun', 'img/tauntaun.jpg');
+new ImageOption('unicorn', 'img/unicorn.jpg');
+new ImageOption('usb', 'img/usb.gif');
+new ImageOption('water-can', 'img/water-can.jpg');
 
 
 //generates array of three random images
@@ -106,13 +106,14 @@ function buildChart(){
   var canvas = document.getElementById('chart');
   var ctx = canvas.getContext('2d');
 
-  var myChart = new Chart(ctx, {
+  var myChart = new Chart(ctx, { //i don't know how to kill this linter error.... 
     type: 'bar',
     data: {
       labels: chartLabels,
       datasets: [{
         label: 'times images chosen',
         data: chartData,
+        backgroundColor: 'blue',
       }]
     },
     options: {
