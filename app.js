@@ -1,3 +1,22 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ @andyfiveeleven
+ Sign out
+ Watch 0
+  Star 0
+  Fork 0 andyfiveeleven/BusMall
+ Code  Issues 0  Pull requests 1  Projects 0  Wiki  Settings Insights
+Branch: features/chart… Find file Copy pathBusMall/app.js
+8e3c47f  11 minutes ago
+@andyfiveeleven andyfiveeleven added some clarification comments
+1 contributor
+RawBlameHistory
+154 lines (138 sloc)  5.06 KB
 var imagesArray = [];
 var chartLabels = [];
 var chartData = [];
@@ -106,7 +125,7 @@ function buildChart(){
   var canvas = document.getElementById('chart');
   var ctx = canvas.getContext('2d');
 
-  var myChart = new Chart(ctx, { //i don't know how to kill this linter error.... 
+  var myChart = new Chart(ctx, { //i don't know how to kill this linter error....
     type: 'bar',
     data: {
       labels: chartLabels,
