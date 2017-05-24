@@ -1,4 +1,7 @@
 var imagesArray = [];
+var chartLabels = [];
+var chartData = [];
+// var clickPercent = []; // trying to figure out the percentages
 var displayedImages = [];
 var lastShown = [];
 var counter = 0;
@@ -6,14 +9,14 @@ var list = document.getElementById('list');
 
 //object constructor
 function ImageOption(name, path){
-  this.name=name;
-  this.path=path;
-  this.clickCount=0;
-  this.displayCount=0;
+  this.name = name;
+  this.path = path;
+  this.clickCount = 0;
+  this.displayCount = 0;
   imagesArray.push(this);
 }
 
-new ImageOption ('bag', 'img/bag.jpg');
+new ImageOption('bag', 'img/bag.jpg');
 new ImageOption('banana', 'img/banana.jpg');
 new ImageOption('bathroom', 'img/bathroom.jpg');
 new ImageOption('boots', 'img/boots.jpg');
@@ -65,6 +68,7 @@ function clicker(click) {
   }
 }
 
+//renders the three images, creates an image tag with class, src and id attributes
 function render(){
   for (var j = 0; j<3; j++) {
     var display = document.getElementById('display');
@@ -80,6 +84,51 @@ function render(){
   }
 }
 
+function creatList(){
+  document.getElementById('display').innerHTML = '';
+  var ul = document.createElement('ul');
+  document.body.appendChild(ul);
+  for (var x = 0; x < imagesArray.length; x++){
+    var li = document.createElement('li');
+    li.innerHTML = imagesArray[x].name + ' was clicked ' + imagesArray[x].clickCount + ' times and was clicked ' + Math.floor(imagesArray[x].clickCount/imagesArray[x].displayCount * 100) + ' percent of times displayed';
+    list.appendChild(li);
+  }
+}
+
+function getChartData(){
+  for(var n = 0; n < imagesArray.length; n++){
+    chartLabels.push(imagesArray[n].name);
+    chartData.push(imagesArray[n].clickCount);
+  }
+}
+
+function buildChart(){
+  var canvas = document.getElementById('chart');
+  var ctx = canvas.getContext('2d');
+
+  var myChart = new Chart(ctx, { //i don't know how to kill this linter error....
+    type: 'bar',
+    data: {
+      labels: chartLabels,
+      datasets: [{
+        label: 'times images chosen',
+        data: chartData,
+        backgroundColor: 'blue',
+      }]
+    },
+    options: {
+      scales:{
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+}
+
+//what happens everytime you click? This happens. clicker is triggered, counter is added to, sets the last shown images as the current images, then clears teh current images. Clears the page, renders new random images.
 function eventHandler() {
   if (counter < 24) {
     var selected = event.target;
@@ -94,15 +143,11 @@ function eventHandler() {
     render();
     console.log(selected.clickCount);
   } else {
-    document.getElementById('display').innerHTML = '';
-    var ul = document.createElement('ul');
-    document.body.appendChild(ul);
-    for (var x = 0; x < imagesArray.length; x++){
-      var li = document.createElement('li');
-      li.innerHTML = imagesArray[x].name + ' was clicked ' + imagesArray[x].clickCount + ' times and was clicked ' + Math.floor(imagesArray[x].clickCount/imagesArray[x].displayCount * 100) + ' percent of times displayed';
-      list.appendChild(li);
-    }
+    creatList();
+    getChartData();
+    buildChart();
   }
 }
+
 
 render();
