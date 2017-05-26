@@ -9,8 +9,8 @@ var counter = 0;
 
 if(localStorage.chartClickData){
   chartClickData = localStorage.chartClickData.split(',');
-  counter = 24;
-}
+  counter = 25;
+} 
 
 
 //object constructor
@@ -131,7 +131,7 @@ function buildChart(){
 
 //what happens everytime you click? This happens. clicker is triggered, counter is added to, sets the last shown images as the current images, then clears teh current images. Clears the page, renders new random images.
 function eventHandler() {
-  if (counter < 24) {
+  if (counter < 25) {
     var selected = event.target;
     console.log(selected);
     console.log(selected.id);
@@ -152,7 +152,7 @@ function eventHandler() {
 }
 
 function loadChartIfComplete(){ //loads the chart if the user has complete the survey (that counter completion is in local storage)
-  if (counter < 24) {
+  if (counter < 25) {
     render();
   } else {
     wipe();
