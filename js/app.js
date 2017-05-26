@@ -2,14 +2,13 @@ var imagesArray = [];
 var chartLabels = [];
 var chartClickData = [];
 var chartDisplayData = [];
-// var clickPercent = []; // trying to figure out the percentages
 var displayedImages = [];
 var lastShown = [];
 var counter = 0;
 
 if(localStorage.chartClickData){
   chartClickData = localStorage.chartClickData.split(',');
-  counter = 24;
+  counter = 25;
 }
 
 
@@ -69,7 +68,6 @@ function clicker(click) {
   for (var i = 0; i < imagesArray.length; i++) {
     if (imagesArray[i].name === click) {
       imagesArray[i].clickCount ++;
-      console.log(imagesArray[i].clickCount);
     }
   }
 }
@@ -86,7 +84,6 @@ function render(){
     image.addEventListener('click', eventHandler);
     display.appendChild(image);
     object.displayCount++;
-    console.log(displayedImages);
   }
 }
 
@@ -131,10 +128,8 @@ function buildChart(){
 
 //what happens everytime you click? This happens. clicker is triggered, counter is added to, sets the last shown images as the current images, then clears teh current images. Clears the page, renders new random images.
 function eventHandler() {
-  if (counter < 24) {
+  if (counter < 25) {
     var selected = event.target;
-    console.log(selected);
-    console.log(selected.id);
     clicker(selected.id);
     counter ++;
     lastShown = displayedImages;
@@ -142,7 +137,6 @@ function eventHandler() {
     document.getElementById('display').innerHTML = '';
     randomImages(imagesArray.length);
     render();
-    console.log(selected.clickCount);
   } else {
     wipe();
     getChartData();
@@ -152,7 +146,7 @@ function eventHandler() {
 }
 
 function loadChartIfComplete(){ //loads the chart if the user has complete the survey (that counter completion is in local storage)
-  if (counter < 24) {
+  if (counter < 25) {
     render();
   } else {
     wipe();
@@ -163,7 +157,6 @@ function loadChartIfComplete(){ //loads the chart if the user has complete the s
 
 function save() {
   localStorage.chartClickData = chartClickData;
-  console.log(chartClickData);
 }
 
 loadChartIfComplete();
