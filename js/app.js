@@ -2,7 +2,6 @@ var imagesArray = [];
 var chartLabels = [];
 var chartClickData = [];
 var chartDisplayData = [];
-// var clickPercent = []; // trying to figure out the percentages
 var displayedImages = [];
 var lastShown = [];
 var counter = 0;
@@ -10,7 +9,7 @@ var counter = 0;
 if(localStorage.chartClickData){
   chartClickData = localStorage.chartClickData.split(',');
   counter = 25;
-} 
+}
 
 
 //object constructor
@@ -69,7 +68,6 @@ function clicker(click) {
   for (var i = 0; i < imagesArray.length; i++) {
     if (imagesArray[i].name === click) {
       imagesArray[i].clickCount ++;
-      console.log(imagesArray[i].clickCount);
     }
   }
 }
@@ -86,7 +84,6 @@ function render(){
     image.addEventListener('click', eventHandler);
     display.appendChild(image);
     object.displayCount++;
-    console.log(displayedImages);
   }
 }
 
@@ -133,8 +130,6 @@ function buildChart(){
 function eventHandler() {
   if (counter < 25) {
     var selected = event.target;
-    console.log(selected);
-    console.log(selected.id);
     clicker(selected.id);
     counter ++;
     lastShown = displayedImages;
@@ -142,7 +137,6 @@ function eventHandler() {
     document.getElementById('display').innerHTML = '';
     randomImages(imagesArray.length);
     render();
-    console.log(selected.clickCount);
   } else {
     wipe();
     getChartData();
@@ -163,7 +157,6 @@ function loadChartIfComplete(){ //loads the chart if the user has complete the s
 
 function save() {
   localStorage.chartClickData = chartClickData;
-  console.log(chartClickData);
 }
 
 loadChartIfComplete();
